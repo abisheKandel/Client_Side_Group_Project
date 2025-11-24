@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | NHS Appointment Helper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS (CDN) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  >
+
+  <!-- Your custom login CSS -->
+  <link rel="stylesheet" href="../CSS/login.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">HealthCare+</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="appointment.html">Appointment</a></li>
+          <li class="nav-item"><a class="nav-link" href="assessment.html">Assessment</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="login.html">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main login area -->
+  <main class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-10 col-md-8 col-lg-5">
+          <div class="card shadow-sm">
+            <div class="card-header bg-white">
+              <h1 class="h4 mb-0 text-center">Sign in</h1>
+            </div>
+            <div class="card-body">
+              <!-- NHS login idea (disabled placeholder button) -->
+              <div class="d-grid mb-3">
+                <button type="button" class="btn btn-outline-primary" disabled>
+                  NHS login
+                </button>
+              </div>
+
+              <p class="text-center small text-muted mb-3">or sign in with your email address</p>
+              <hr>
+
+              <!-- Login form -->
+              <form id="loginForm" novalidate>
+                <div class="mb-3">
+                  <label for="loginEmail" class="form-label">Email address *</label>
+                  <input type="email" class="form-control" id="loginEmail" name="loginEmail">
+                  <div class="invalid-feedback">
+                    Please enter a valid email address.
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="loginPassword" class="form-label">Password *</label>
+                  <input type="password" class="form-control" id="loginPassword" name="loginPassword">
+                  <div class="invalid-feedback">
+                    Password must be at least 6 characters long.
+                  </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="rememberMe">
+                  <label class="form-check-label" for="rememberMe">Remember me on this device</label>
+                </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+              </form>
+
+              <!-- Area for overall message -->
+              <div id="loginMessage" class="mt-3 small"></div>
+            </div>
+
+            <div class="card-footer text-center small text-muted">
+              After signing in you can continue to view and manage your assessments and appointments.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Simple footer -->
+  <footer class="text-center py-3 small text-muted bg-light border-top">
+    &copy; NHS Appointment Helper
+  </footer>
+
+  <!-- Bootstrap JS (bundle) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- Your custom login JS -->
+  <script src="../JAVASCRIPT/login.js"></script>
+</body>
+</html>
