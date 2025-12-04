@@ -1,25 +1,38 @@
-
+/* Simple clean login styling */
 
 body {
   background-color: #f5f5f5;
 }
 
-/* Make sure the main section doesn't sit under the fixed navbar if you later fix it */
-main {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-/* Optional: slightly larger shadow on the login card */
 .card {
   border-radius: 0.5rem;
 }
 
-/* Message colours for JS feedback */
 #loginMessage.text-success {
-  color: #198754; /* Bootstrap success */
+  color: #198754;
 }
 
 #loginMessage.text-danger {
-  color: #dc3545; /* Bootstrap danger */
+  color: #dc3545;
 }
+
+/* Text logo style like HCA Healthcare UK */
+
+.hc-brand-text {
+  line-height: 1.1;
+}
+
+.hc-brand-main {
+  display: block;
+  font-weight: 700;
+  font-size: 1.4rem;   /* main big text */
+}
+
+.hc-brand-sub {
+  display: block;
+  font-size: 0.75rem;  /* smaller line under */
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+

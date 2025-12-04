@@ -1,6 +1,8 @@
-/* appointment.css */
+/* ===============================
+   APPOINTMENTS PAGE
+   =============================== */
 
-body {
+.appointments-page {
   background-color: #f5f5f5;
 }
 
@@ -8,32 +10,54 @@ main {
   min-height: 80vh;
 }
 
-/* Summary panels at top */
+/* Login card */
+.login-card {
+  border-radius: 0.9rem;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+/* Summary tiles */
 .summary-panel {
-  background-color: #ffffff;
-  border-radius: 0.5rem;
+  background: #ffffff;
   padding: 1rem 1.25rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 0.9rem;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(148, 163, 184, 0.25);
 }
 
-/* Appointment cards */
+/* Form card */
+.appointment-form-card {
+  border-radius: 0.9rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+/* Individual appointment cards – your JS should add .appointment-card
+   and optionally .next-appointment */
 .appointment-card {
-  margin-bottom: 1rem;
+  background: #ffffff;
+  border-radius: 0.9rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
 }
 
-/* Highlight next appointment */
+/* Highlight next upcoming appointment */
 .appointment-card.next-appointment {
   border-left: 4px solid #0d6efd;
-  box-shadow: 0 0 0.5rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.18),
+              0 14px 30px rgba(15, 23, 42, 0.09);
 }
 
-/* "Next" badge on the card title */
-.next-badge {
-  font-size: 0.8rem;
-  margin-left: 0.5rem;
+/* Small layout tweak for appointment meta rows */
+.appointment-meta {
+  font-size: 0.9rem;
+  color: #4b5563;
 }
 
-/* Selected provider panel */
-#selectedProviderPanel {
-  border-left: 4px solid #198754;
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .summary-panel {
+    margin-bottom: 0.5rem;
+  }
 }

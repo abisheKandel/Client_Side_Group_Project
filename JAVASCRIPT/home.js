@@ -1,94 +1,108 @@
-// home.js
-$(document).ready(function () {
-  // 1. Show today's date
-  const today = new Date();
-  const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-  $("#todayDate").text(today.toLocaleDateString(undefined, options));
+// ../JAVASCRIPT/home.js
 
-  // 2. Show welcome message depending on login state
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  if (isLoggedIn) {
-    $("#welcomeMessage").text("You are signed in. You can go straight to Services or Appointments.");
-  } else {
-    $("#welcomeMessage").text("You are not signed in yet. Use the Login page to start saving your appointments.");
+$(function () {
+  // ---------- TODAY'S DATE (if element exists) ----------
+  const today = new Date();
+  const $todayDate = $("#todayDate");
+
+  if ($todayDate.length) {
+    $todayDate.text(
+      today.toLocaleDateString(undefined, {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    );
   }
 
-  // 3. Read appointments from localStorage and show summary / next appointment
-  const apptsRaw = localStorage.getItem("appointments");
+  // ---------- LOGIN STATE MESSAGE ----------
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const $welcomeMessage = $("#welcomeMessage");
+
+  if ($welcomeMessage.length) {
+    $welcomeMessage.text(
+      isLoggedIn
+        ? "You are signed in. View and update your appointments anytime."
+        : "You are not signed in yet. Log in to save and manage your appointments."
+    );
+  }
+
+  // ---------- APPOINTMENTS & NEXT APPOINTMENT ----------
   let appointments = [];
   try {
-    if (apptsRaw) {
-      appointments = JSON.parse(apptsRaw);
-    }
-  } catch (e) {
+    const raw = localStorage.getItem("appointments");
+    appointments = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(appointments)) appointments = [];
+  } catch {
     appointments = [];
   }
 
-  function findNextAppointmentIndex() {
-    if (!appointments || appointments.length === 0) return -1;
-    let nextIndex = 0;
-    let nextDate = new Date(appointments[0].date + "T" + appointments[0].time);
-    for (let i = 1; i < appointments.length; i++) {
-      const d = new Date(appointments[i].date + "T" + appointments[i].time);
-      if (d < nextDate) {
-        nextDate = d;
-        nextIndex = i;
-      }
-    }
-    return nextIndex;
+  let nextAppt = null;
+  if (appointments.length) {
+    const now = new Date();
+
+    const withDates = appointments
+      .map((a) => {
+        const timePart = a.time ? a.time : "12:00";
+        return {
+          ...a,
+          when: new Date(`${a.date}T${timePart}`),
+        };
+      })
+      .filter((a) => !isNaN(a.when.getTime()) && a.when >= now)
+      .sort((a, b) => a.when - b.when);
+
+    if (withDates.length) nextAppt = withDates[0];
   }
 
-  if (appointments.length > 0) {
-    $("#homeApptCount").text(appointments.length);
-    const idx = findNextAppointmentIndex();
-    if (idx >= 0) {
-      const ap = appointments[idx];
-      const summary =
-        ap.type + " on " + ap.date + " at " + ap.time + " (" + ap.location + ")";
-      $("#homeNextAppt").text(summary);
-      $("#heroNextAppt").text(summary);
-    }
-  }
+  const summary = nextAppt
+    ? `${nextAppt.type} on ${nextAppt.date} at ${nextAppt.time} (${nextAppt.location})`
+    : "No upcoming appointments saved.";
 
-  // 4. Interactive "How it works" step cards
-  const stepDetails = {
+  const $heroNextAppt = $("#heroNextAppt");
+  if ($heroNextAppt.length) $heroNextAppt.text(summary);
+
+  const $homeNextAppt = $("#homeNextAppt");
+  if ($homeNextAppt.length) $homeNextAppt.text(summary);
+
+  const $homeApptCount = $("#homeApptCount");
+  if ($homeApptCount.length) $homeApptCount.text(appointments.length);
+
+  // ---------- HOW IT WORKS – STEP CARDS ----------
+  const steps = {
     1: {
-      title: "Step 1: Check your symptoms",
+      title: "Step 1: Check symptoms",
       text:
-        "Use the assessment page to answer a few quick questions. If your answers suggest an emergency, " +
-        "you will be guided towards urgent care services instead of booking a routine appointment.",
+        "Use the symptom check to answer quick questions about how you’re feeling and whether you might need urgent or routine care.",
       link: "assessment.html",
-      linkText: "Go to assessment"
+      linkText: "Go to symptom check",
     },
     2: {
       title: "Step 2: Compare local services",
       text:
-        "On the services page, enter your location and radius to see nearby NHS services. " +
-        "They are ordered by estimated waiting time so you can choose the fastest suitable option.",
+        "Enter your area to see nearby NHS services sorted by distance and typical waiting times, then choose what suits you best.",
       link: "services.html",
-      linkText: "Find services"
+      linkText: "Browse services",
     },
     3: {
-      title: "Step 3: Book and manage appointments",
+      title: "Step 3: Manage appointments",
       text:
-        "After choosing a service, you can book an appointment and store it on the appointments page. " +
-        "You can edit details, add notes, and keep track of what is coming up next.",
+        "Save your appointment details so you always know when and where you’re being seen, and update them as things change.",
       link: "appointment.html",
-      linkText: "View appointments"
-    }
+      linkText: "Open my appointments",
+    },
   };
 
   $(".step-card").on("click", function () {
     $(".step-card").removeClass("active");
     $(this).addClass("active");
 
-    const step = $(this).data("step");
-    const detail = stepDetails[step];
+    const s = steps[$(this).data("step")];
+    if (!s) return;
 
-    $("#stepDetailTitle").text(detail.title);
-    $("#stepDetailText").text(detail.text);
-    $("#stepDetailLink")
-      .attr("href", detail.link)
-      .text(detail.linkText);
+    $("#stepDetailTitle").text(s.title);
+    $("#stepDetailText").text(s.text);
+    $("#stepDetailLink").attr("href", s.link).text(s.linkText);
   });
 });

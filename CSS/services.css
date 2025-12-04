@@ -1,26 +1,130 @@
-/* services.css */
+/* ===============================
+   SERVICES PAGE BASE
+   =============================== */
 
-body {
+/* Body on this page */
+.services-page {
   background-color: #f5f5f5;
 }
 
+/* Keep content tall enough */
 main {
   min-height: 80vh;
 }
 
-/* Each service card highlight */
-.service-card {
-  margin-bottom: 1rem;
+/* Page header */
+.services-header {
+  padding-top: 24px;
+  padding-bottom: 8px;
 }
 
-/* Highlight the top recommendation */
-.service-card.recommended {
-  border: 2px solid #0d6efd;
-  box-shadow: 0 0 0.5rem rgba(13, 110, 253, 0.3);
+/* Filter row spacing */
+.services-filter-row {
+  margin-top: 8px;
 }
 
-/* Small layout tweak for the summary bar */
+/* ===============================
+   SUMMARY CARDS
+   =============================== */
+
+.services-summary-card {
+  background-color: #ffffff;
+  border-radius: 0.8rem;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
 #serviceCount,
 #bestServiceText {
   min-height: 1.5rem;
+}
+
+/* ===============================
+   SERVICE RESULT CARDS
+   =============================== */
+
+/* Generic service card container (your JS should add .service-card) */
+.service-card {
+  background-color: #ffffff;
+  border-radius: 0.9rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04);
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease,
+    border-color 0.15s ease;
+}
+
+/* Hover effect */
+.service-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+/* Highlight the recommended / best service
+   (works if JS adds .recommended or .service-card--best) */
+.service-card.recommended,
+.service-card.service-card--best {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.2),
+              0 18px 40px rgba(15, 23, 42, 0.1);
+}
+
+/* Optional header row inside card if you use it */
+.service-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Soft “Shortest wait” badge */
+.badge.bg-success-soft {
+  background-color: #e6f4ea;
+  color: #198754;
+  font-weight: 600;
+}
+
+/* Meta info grid inside card */
+.service-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.service-meta-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+}
+
+.service-meta-value {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.service-meta-wait {
+  color: #0d6efd;
+}
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
+
+@media (max-width: 768px) {
+  .services-summary-card {
+    margin-bottom: 0.5rem;
+  }
+
+  .service-meta {
+    grid-template-columns: 1fr;
+  }
 }

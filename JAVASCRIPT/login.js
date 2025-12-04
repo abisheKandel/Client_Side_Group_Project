@@ -1,55 +1,45 @@
-// Simple client-side validation for login page
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('loginForm');
-  const emailInput = document.getElementById('loginEmail');
-  const passwordInput = document.getElementById('loginPassword');
-  const messageBox = document.getElementById('loginMessage');
+document.addEventListener("DOMContentLoaded", () => {
 
-  if (!form) return;
+  const form = document.getElementById("loginForm");
+  const emailInput = document.getElementById("loginEmail");
+  const passInput = document.getElementById("loginPassword");
+  const msg = document.getElementById("loginMessage");
 
-  form.addEventListener('submit', function (event) {
-    event.preventDefault(); // stop normal form submit
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-    // Clear previous state
-    emailInput.classList.remove('is-invalid');
-    passwordInput.classList.remove('is-invalid');
-    messageBox.textContent = '';
-    messageBox.className = ''; // remove previous Bootstrap text-* classes
+    emailInput.classList.remove("is-invalid");
+    passInput.classList.remove("is-invalid");
+    msg.textContent = "";
+    msg.className = "small";
 
     let valid = true;
 
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-
-    // Very simple email check
-    if (!email || !email.includes('@')) {
-      emailInput.classList.add('is-invalid');
+    if (!emailInput.value.includes("@")) {
+      emailInput.classList.add("is-invalid");
       valid = false;
     }
 
-    // Simple password rule: at least 6 characters
-    if (!password || password.length < 6) {
-      passwordInput.classList.add('is-invalid');
+    if (passInput.value.length < 6) {
+      passInput.classList.add("is-invalid");
       valid = false;
     }
 
     if (!valid) {
-      messageBox.textContent = 'Please correct the highlighted fields.';
-      messageBox.classList.add('text-danger');
+      msg.textContent = "Please fix the errors above.";
+      msg.classList.add("text-danger");
       return;
     }
 
-    // Success – treat as logged in
-messageBox.textContent = 'Login successful. Redirecting to your appointment page...';
-messageBox.classList.add('text-success');
+    // LOGIN SUCCESS
+    localStorage.setItem("isLoggedIn", "true");
 
-// mark user as logged in for other pages
-localStorage.setItem("isLoggedIn", "true");
+    msg.textContent = "Sign-in successful! Redirecting...";
+    msg.classList.add("text-success");
 
-// Redirect to appointment page after a short delay
-setTimeout(function () {
-  window.location.href = "appointment.html";  // same folder as login.html
-}, 1200);
-
+    setTimeout(() => {
+      window.location.href = "appointment.html";
+    }, 800);
   });
+
 });

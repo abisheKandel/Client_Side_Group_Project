@@ -2,33 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Home | NHS Appointment Helper</title>
+  <title>Home | HealthCare+</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-    crossorigin="anonymous"
-  >
+  <!-- Favicon -->
+  <link rel="icon" href="/Project/IMAGE/favicon.png" type="image/png">
 
-  <!-- Home page CSS -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="../CSS/home.css">
 </head>
+
 <body>
-  <!-- NAVBAR (same pattern as other pages) -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">NHS Appointment Helper</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="/Project/IMAGE/favicon.png" alt="HealthCare+ logo" width="32" height="32">
+        <div class="hc-brand-text">
+          <span class="hc-brand-main">HealthCare+</span>
+          <span class="hc-brand-sub">Healthcare UK</span>
+        </div>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navBar" aria-controls="navBar" aria-expanded="false">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+      <div class="collapse navbar-collapse" id="navBar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
           <li class="nav-item"><a class="nav-link" href="assessment.html">Assessment</a></li>
           <li class="nav-item"><a class="nav-link" href="appointment.html">Appointments</a></li>
@@ -37,141 +47,209 @@
           <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
         </ul>
       </div>
+
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
-  <header class="hero-section">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-7">
-          <h1 class="display-5 fw-bold text-white mb-3">
-            Find the fastest NHS appointment near you.
-          </h1>
-          <p class="lead text-white-50 mb-4">
-            This tool compares nearby NHS services by distance and estimated waiting time,
-            then helps you book and manage your appointments in one place.
-          </p>
-          <div class="d-flex flex-wrap gap-2">
-            <a href="assessment.html" class="btn btn-light btn-lg">Start with assessment</a>
-            <a href="services.html" class="btn btn-outline-light btn-lg">Find services</a>
-          </div>
-          <p id="welcomeMessage" class="mt-3 text-white-50 small"></p>
+  <!-- HERO SECTION: SAME STYLE AS HCA, YOUR CONTENT -->
+  <section class="hc-hero">
+
+    <!-- Left navy panel -->
+    <div class="hc-hero-left">
+      <div class="hc-hero-inner">
+
+        <h1 class="hc-hero-title">
+          Get the right NHS care,<br>
+          focused on you
+        </h1>
+
+        <p class="hc-hero-sub">
+          HealthCare+ helps you compare nearby NHS services, understand waiting times
+          and manage your appointments in one place.
+        </p>
+
+        <!-- Search bar -->
+        <div class="hc-search-wrapper">
+          <input type="text"
+                 class="hc-search-input"
+                 placeholder="Search services, symptoms, locations…">
         </div>
-        <div class="col-lg-5 d-none d-lg-block">
-          <div class="hero-card shadow">
-            <h2 class="h5 mb-3">Today at a glance</h2>
-            <p class="mb-1"><strong>Date:</strong> <span id="todayDate"></span></p>
-            <p class="mb-1"><strong>Your next appointment:</strong></p>
-            <p id="heroNextAppt" class="mb-0 small text-muted">
-              No upcoming appointments found.
-            </p>
-          </div>
+
+        <!-- Get started buttons -->
+        <div class="hc-started-label">GET STARTED</div>
+
+        <div class="hc-start-buttons">
+          <a href="services.html" class="hc-btn-primary">
+            <span class="hc-btn-icon">📅</span>
+            Find a service
+          </a>
+
+          <a href="assessment.html" class="hc-btn-outline">
+            <span class="hc-btn-icon">🩺</span>
+            Check symptoms
+          </a>
         </div>
+
+        <p id="welcomeMessage" class="hc-welcome small mt-3"></p>
+
       </div>
     </div>
-  </header>
 
-  <!-- THREE-STEP JOURNEY -->
-  <main class="container my-5">
-    <div class="row mb-4">
-      <div class="col text-center">
-        <h2 class="h3">How it works</h2>
-        <p class="text-muted">
-          Three simple steps to reach the right NHS service with the shortest wait.
+    <!-- Right image panel -->
+    <div class="hc-hero-right"></div>
+
+  </section>
+
+  <!-- MAIN CONTENT -->
+<main>
+
+  <!-- ACTION GRID: WHAT DO YOU NEED TODAY? -->
+  <section class="home-section home-actions">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="h4 mb-2">What do you need today?</h2>
+        <p class="text-muted mb-0">
+          Use these shortcuts to jump straight to the most common tasks.
         </p>
       </div>
-    </div>
 
-    <div class="row g-4 align-items-start">
-      <div class="col-lg-6">
-        <div class="step-list">
-          <div class="step-card active" data-step="1">
-            <span class="step-number">1</span>
-            <div>
-              <h3 class="h6 mb-1">Check your symptoms</h3>
-              <p class="mb-0 small text-muted">Use the assessment page to spot red-flag signs that may need urgent care.</p>
-            </div>
-          </div>
-          <div class="step-card" data-step="2">
-            <span class="step-number">2</span>
-            <div>
-              <h3 class="h6 mb-1">Compare local services</h3>
-              <p class="mb-0 small text-muted">Enter your area and radius to see nearby NHS services sorted by waiting time.</p>
-            </div>
-          </div>
-          <div class="step-card" data-step="3">
-            <span class="step-number">3</span>
-            <div>
-              <h3 class="h6 mb-1">Book and manage appointments</h3>
-              <p class="mb-0 small text-muted">Book at the recommended service and keep all your appointments in one list.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="row g-4">
 
-      <div class="col-lg-6">
-        <div class="card shadow-sm" id="stepDetailCard">
-          <div class="card-body">
-            <h3 class="h5" id="stepDetailTitle">Step 1: Check your symptoms</h3>
-            <p id="stepDetailText">
-              Use the assessment page to answer a few quick questions. If your answers suggest an emergency,
-              you’ll be guided to urgent services like 999 or NHS 111 instead of booking a routine appointment.
+        <!-- Card 1 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card h-100">
+            <div class="feature-icon feature-icon-blue">
+              📍
+            </div>
+            <h5 class="feature-title">Find fastest service</h5>
+            <p class="feature-text">
+              See nearby NHS services and compare typical waiting times so you can be seen sooner.
             </p>
-            <a href="assessment.html" id="stepDetailLink" class="btn btn-outline-primary btn-sm">
-              Go to assessment
+            <a href="services.html" class="btn btn-primary btn-sm w-100">
+              Find an NHS service
             </a>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- RECENT ACTIVITY / QUICK LINKS -->
-    <div class="row mt-5 g-4">
-      <div class="col-lg-6">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h3 class="h5 mb-3">Your activity</h3>
-            <p class="mb-1"><strong>Total appointments stored:</strong> <span id="homeApptCount">0</span></p>
-            <p class="mb-1"><strong>Next appointment:</strong></p>
-            <p id="homeNextAppt" class="mb-0 small text-muted">No appointments yet. Start by booking one.</p>
+        <!-- Card 2 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card h-100">
+            <div class="feature-icon feature-icon-purple">
+              🩺
+            </div>
+            <h5 class="feature-title">Check my symptoms</h5>
+            <p class="feature-text">
+              Answer quick questions about how you’re feeling and see if you need urgent or routine care.
+            </p>
+            <a href="assessment.html" class="btn btn-outline-primary btn-sm w-100">
+              Start symptom check
+            </a>
           </div>
         </div>
-      </div>
 
-      <div class="col-lg-6">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h3 class="h5 mb-3">Quick actions</h3>
-            <div class="d-flex flex-wrap gap-2">
-              <a href="services.html" class="btn btn-primary">Find fastest service</a>
-              <a href="appointment.html" class="btn btn-outline-primary">View my appointments</a>
-              <a href="contact.html" class="btn btn-outline-secondary">Give feedback</a>
+        <!-- Card 3 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card h-100">
+            <div class="feature-icon feature-icon-green">
+              📅
             </div>
-            <p class="small text-muted mt-3 mb-0">
-              You can use these shortcuts after signing in to move straight to the part of the journey you need.
+            <h5 class="feature-title">My appointments</h5>
+            <p class="feature-text">
+              Keep all your NHS appointments in one place so you always know where and when to go.
+            </p>
+            <a href="appointment.html" class="btn btn-outline-primary btn-sm w-100">
+              View appointments
+            </a>
+            <p class="feature-meta small text-muted mt-2">
+              Next: <span id="homeNextAppt">No upcoming appointments saved.</span>
             </p>
           </div>
         </div>
+
+        <!-- Card 4 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card h-100">
+            <div class="feature-icon feature-icon-teal">
+              💬
+            </div>
+            <h5 class="feature-title">Contact & feedback</h5>
+            <p class="feature-text">
+              Ask questions, report issues, or tell us how HealthCare+ can improve your experience.
+            </p>
+            <a href="contact.html" class="btn btn-outline-secondary btn-sm w-100">
+              Get in touch
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
-  </main>
+  </section>
 
-  <footer class="text-center py-3 small text-muted border-top">
-    &copy; NHS Appointment Helper
-  </footer>
+  <!-- BENEFITS / EXPLAINER SECTION -->
+  <section class="home-section home-benefits">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-5">
+          <h2 class="h4 mb-3">Why use HealthCare+ ?</h2>
+          <p class="text-muted mb-3">
+            HealthCare+ is built to work alongside NHS services, helping you make smarter choices
+            about where to go and when.
+          </p>
+          <ul class="list-unstyled benefit-list mb-0">
+            <li>
+              <strong>See options in one place</strong><br>
+              Search by area and quickly compare different NHS services.
+            </li>
+            <li>
+              <strong>Cut down waiting time</strong><br>
+              Use typical wait information to choose the most suitable service.
+            </li>
+            <li>
+              <strong>Stay organised</strong><br>
+              Save appointment details so you never lose track of where you’re being seen.
+            </li>
+          </ul>
+        </div>
 
-  <!-- Bootstrap JS bundle -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"
-  ></script>
+        <div class="col-lg-7">
+          <div class="row g-3">
+            <div class="col-sm-4">
+              <div class="benefit-card">
+                <div class="benefit-number">01</div>
+                <p class="benefit-text">Symptom-based guidance for urgent vs routine care.</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="benefit-card">
+                <div class="benefit-number">02</div>
+                <p class="benefit-text">Simple maps and lists of nearby NHS providers.</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="benefit-card">
+                <div class="benefit-number">03</div>
+                <p class="benefit-text">Appointment reminders kept locally on your device.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <!-- jQuery -->
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="text-center py-3 small text-muted">
+  © 2025 HealthCare+
+</footer>
+
+
+  <!-- You can keep your existing sections below (How it works, Quick actions, footer) -->
+
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-  <!-- Home JS -->
   <script src="../JAVASCRIPT/home.js"></script>
 </body>
 </html>

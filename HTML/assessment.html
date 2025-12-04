@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Assessment | NHS Appointment Helper</title>
+  <title>Assessment | HealthCare+</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
@@ -13,15 +13,28 @@
     crossorigin="anonymous"
   >
 
+  <!-- Shared styles (logo, navbar, etc.) -->
+  <link rel="stylesheet" href="../CSS/home.css">
   <!-- Page CSS -->
   <link rel="stylesheet" href="../CSS/assessment.css">
+
+  <link rel="icon" href="../IMAGE/favicon.png" type="image/png">
 </head>
-<body>
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<body class="assessment-page">
+
+  <!-- NAVBAR (same style as Home/Services) -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">NHS Appointment Helper</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="../IMAGE/favicon.png" alt="HealthCare+ logo" width="28" height="28">
+        <div class="hc-brand-text">
+          <span class="hc-brand-main">HealthCare+</span>
+          <span class="hc-brand-sub">Healthcare UK</span>
+        </div>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#mainNav"
               aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -41,152 +54,172 @@
   </nav>
 
   <!-- MAIN CONTENT -->
-  <main class="container py-4">
-    <div class="row mb-4">
-      <div class="col-lg-8">
-        <h1 class="h3">Quick symptom check</h1>
-        <p class="text-muted">
+  <main>
+    <div class="container py-4">
+
+      <!-- Header -->
+      <div class="assessment-header mb-3">
+        <h1 class="h3 mb-2">Quick symptom check</h1>
+        <p class="text-muted mb-0">
           Answer these questions to see whether it may be safer to use urgent care (999 or NHS 111)
           instead of booking a routine appointment.
         </p>
       </div>
-    </div>
 
-    <div class="row g-4">
-      <div class="col-lg-7">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h2 class="h5 mb-3">Assessment questions</h2>
+      <div class="row g-4 align-items-start">
 
-            <form id="assessmentForm">
-              <!-- MAIN SYMPTOM -->
-              <div class="mb-3">
-                <label for="mainSymptom" class="form-label">What is your main symptom? *</label>
-                <select id="mainSymptom" class="form-select">
-                  <option value="">Select one</option>
-                  <option value="chest">Chest pain or tightness</option>
-                  <option value="breathing">Breathing problems</option>
-                  <option value="injury">Injury or accident</option>
-                  <option value="fever">Fever or infection</option>
-                  <option value="pain">Ongoing pain or other problem</option>
-                  <option value="other">Something else</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please choose your main symptom.
-                </div>
-              </div>
+        <!-- FORM COLUMN -->
+        <div class="col-lg-7">
+          <div class="card assessment-card shadow-sm">
+            <div class="card-body">
+              <h2 class="h5 mb-3">Assessment questions</h2>
 
-              <!-- DURATION -->
-              <div class="mb-3">
-                <label for="duration" class="form-label">How long have you had this problem? *</label>
-                <select id="duration" class="form-select">
-                  <option value="">Select one</option>
-                  <option value="hours">Less than 24 hours</option>
-                  <option value="days">A few days</option>
-                  <option value="weeks">A few weeks</option>
-                  <option value="months">Longer than a month</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select how long the problem has lasted.
-                </div>
-              </div>
-
-              <!-- RED-FLAG CHECKBOXES -->
-              <fieldset class="mb-3">
-                <legend class="fs-6 mb-2">Do any of these apply right now?</legend>
-                <p class="small text-muted mb-2">
-                  Tick any that match your situation.
-                </p>
-
-                <div class="form-check">
-                  <input class="form-check-input red-flag" type="checkbox" id="rfChestPain">
-                  <label class="form-check-label" for="rfChestPain">
-                    Severe chest pain or sudden chest tightness
-                  </label>
+              <form id="assessmentForm" novalidate>
+                <!-- MAIN SYMPTOM -->
+                <div class="mb-3">
+                  <label for="mainSymptom" class="form-label">What is your main symptom? *</label>
+                  <select id="mainSymptom" class="form-select">
+                    <option value="">Select one</option>
+                    <option value="chest">Chest pain or tightness</option>
+                    <option value="breathing">Breathing problems</option>
+                    <option value="injury">Injury or accident</option>
+                    <option value="fever">Fever or infection</option>
+                    <option value="pain">Ongoing pain or other problem</option>
+                    <option value="other">Something else</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please choose your main symptom.
+                  </div>
                 </div>
 
-                <div class="form-check">
-                  <input class="form-check-input red-flag" type="checkbox" id="rfBreathing">
-                  <label class="form-check-label" for="rfBreathing">
-                    Severe difficulty breathing or gasping for air
-                  </label>
+                <!-- DURATION -->
+                <div class="mb-3">
+                  <label for="duration" class="form-label">How long have you had this problem? *</label>
+                  <select id="duration" class="form-select">
+                    <option value="">Select one</option>
+                    <option value="hours">Less than 24 hours</option>
+                    <option value="days">A few days</option>
+                    <option value="weeks">A few weeks</option>
+                    <option value="months">Longer than a month</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select how long the problem has lasted.
+                  </div>
                 </div>
 
-                <div class="form-check">
-                  <input class="form-check-input red-flag" type="checkbox" id="rfBleeding">
-                  <label class="form-check-label" for="rfBleeding">
-                    Heavy bleeding that will not stop
-                  </label>
+                <!-- RED-FLAG CHECKBOXES -->
+                <fieldset class="mb-3">
+                  <legend class="fs-6 mb-2">Do any of these apply right now?</legend>
+                  <p class="small text-muted mb-2">
+                    Tick any that match your situation.
+                  </p>
+
+                  <div class="form-check">
+                    <input class="form-check-input red-flag" type="checkbox" id="rfChestPain">
+                    <label class="form-check-label" for="rfChestPain">
+                      Severe chest pain or sudden chest tightness
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input red-flag" type="checkbox" id="rfBreathing">
+                    <label class="form-check-label" for="rfBreathing">
+                      Severe difficulty breathing or gasping for air
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input red-flag" type="checkbox" id="rfBleeding">
+                    <label class="form-check-label" for="rfBleeding">
+                      Heavy bleeding that will not stop
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input red-flag" type="checkbox" id="rfConfused">
+                    <label class="form-check-label" for="rfConfused">
+                      New confusion, slurred speech, or face drooping
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input red-flag" type="checkbox" id="rfSeverePain">
+                    <label class="form-check-label" for="rfSeverePain">
+                      Sudden, very severe pain anywhere in the body
+                    </label>
+                  </div>
+
+                </fieldset>
+
+                <!-- SUBMIT BUTTON -->
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary">
+                    Check recommendation
+                  </button>
                 </div>
-
-                <div class="form-check">
-                  <input class="form-check-input red-flag" type="checkbox" id="rfConfused">
-                  <label class="form-check-label" for="rfConfused">
-                    New confusion, slurred speech, or face drooping
-                  </label>
-                </div>
-
-                <div class="form-check">
-                  <input class="form-check-input red-flag" type="checkbox" id="rfSeverePain">
-                  <label class="form-check-label" for="rfSeverePain">
-                    Sudden, very severe pain anywhere in the body
-                  </label>
-                </div>
-
-              </fieldset>
-
-              <!-- SUBMIT BUTTON -->
-              <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary">Check recommendation</button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- RESULT PANEL -->
-      <div class="col-lg-5">
-        <div id="resultUrgent" class="alert alert-danger d-none" role="alert">
-          <h2 class="h5">You may need urgent help</h2>
-          <p class="mb-1">
-            Your answers suggest you might need urgent or emergency care.
-          </p>
-          <ul class="mb-2">
-            <li>Call <strong>999</strong> immediately for life-threatening emergencies.</li>
-            <li>Or contact <strong>NHS 111</strong> for urgent medical advice.</li>
-          </ul>
-          <p class="mb-0 small">
-            Do not use this tool to book a routine appointment if you think it is an emergency.
-          </p>
-        </div>
+        <!-- RESULT COLUMN -->
+        <div class="col-lg-5">
+          <div class="result-panel">
 
-        <div id="resultRoutine" class="alert alert-success d-none" role="alert">
-          <h2 class="h5">Routine care is likely suitable</h2>
-          <p class="mb-2">
-            Your answers do not show clear emergency warning signs. You can use this website to
-            find NHS services near you and book a routine appointment.
-          </p>
-          <div class="d-flex flex-wrap gap-2">
-            <a href="services.html" class="btn btn-outline-light btn-sm btn-success">Find services</a>
-            <a href="appointment.html" class="btn btn-outline-success btn-sm">View my appointments</a>
+            <div class="result-header mb-2">
+              <span class="result-label text-uppercase text-muted small">Your guidance</span>
+            </div>
+
+            <div id="resultUrgent" class="alert alert-danger d-none" role="alert">
+              <h2 class="h5">You may need urgent help</h2>
+              <p class="mb-1">
+                Your answers suggest you might need urgent or emergency care.
+              </p>
+              <ul class="mb-2">
+                <li>Call <strong>999</strong> immediately for life-threatening emergencies.</li>
+                <li>Or contact <strong>NHS 111</strong> for urgent medical advice.</li>
+              </ul>
+              <p class="mb-0 small">
+                Do not use this tool to book a routine appointment if you think it is an emergency.
+              </p>
+            </div>
+
+            <div id="resultRoutine" class="alert alert-success d-none" role="alert">
+              <h2 class="h5">Routine care is likely suitable</h2>
+              <p class="mb-2">
+                Your answers do not show clear emergency warning signs. You can use HealthCare+
+                to find NHS services near you and book a routine appointment.
+              </p>
+              <div class="d-flex flex-wrap gap-2">
+                <a href="services.html" class="btn btn-success btn-sm">
+                  Find services
+                </a>
+                <a href="appointment.html" class="btn btn-outline-success btn-sm">
+                  View my appointments
+                </a>
+              </div>
+              <p class="mb-0 small mt-2">
+                If your symptoms get worse or you are unsure, contact NHS 111 for advice.
+              </p>
+            </div>
+
+            <div id="resultInfo" class="alert alert-info" role="alert">
+              <h2 class="h6 mb-2">No result yet</h2>
+              <p class="mb-0 small">
+                Complete the assessment on the left and select “Check recommendation” to see guidance here.
+              </p>
+            </div>
+
           </div>
-          <p class="mb-0 small mt-2">
-            If your symptoms get worse or you are unsure, contact NHS 111 for advice.
-          </p>
         </div>
 
-        <div id="resultInfo" class="alert alert-info" role="alert">
-          <h2 class="h6 mb-2">No result yet</h2>
-          <p class="mb-0 small">
-            Complete the assessment on the left and select “Check recommendation” to see guidance here.
-          </p>
-        </div>
       </div>
     </div>
   </main>
 
+  <!-- FOOTER -->
   <footer class="text-center py-3 small text-muted border-top">
-    &copy; NHS Appointment Helper
+    © 2025 HealthCare+
   </footer>
 
   <!-- Bootstrap JS bundle -->
@@ -199,7 +232,7 @@
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-  <!-- Assessment JS -->
+  <!-- Assessment JS (unchanged) -->
   <script src="../JAVASCRIPT/assessment.js"></script>
 </body>
 </html>
