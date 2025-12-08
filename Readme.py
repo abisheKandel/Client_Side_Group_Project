@@ -10,10 +10,6 @@ The project involves creating a functional front-end prototype of a simple healt
 Primary Link:  
 https://abishekandel.github.io/Client_Side_Group_Project/HTML/index.html  
 
-Project Root:  
-https://abishekandel.github.io/Client_Side_Group_Project/
-
----
 
 ## Project Description
 
@@ -56,5 +52,6 @@ The project was created to:
 - Suraj  
 - Angel  
 - Abishek
+
 
 
