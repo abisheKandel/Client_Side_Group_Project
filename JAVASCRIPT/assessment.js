@@ -1,82 +1,83 @@
-// assessment.js
+// Final assessment logic with 3 outcomes + animation
+
 $(document).ready(function () {
 
-  const $form = $("#assessmentForm");
-  const $mainSymptom = $("#mainSymptom");
-  const $duration = $("#duration");
+  const form = $("#assessmentForm");
 
-  const $resultUrgent = $("#resultUrgent");
-  const $resultRoutine = $("#resultRoutine");
-  const $resultInfo = $("#resultInfo");
+  const urgentBox = $("#resultUrgent");
+  const appointBox = $("#resultAppointment");
+  const routineBox = $("#resultRoutine");
+  const infoBox = $("#resultInfo");
 
-  function showUrgent() {
-    $resultInfo.addClass("d-none");
-    $resultRoutine.addClass("d-none");
-    $resultUrgent.removeClass("d-none");
+  const mainSymptom = $("#mainSymptom");
+  const duration = $("#duration");
+  const worsening = $("#worsening");
 
-    // store outcome (optional, other pages can read this)
-    localStorage.setItem("assessmentOutcome", "urgent");
+  function resetPanels() {
+    urgentBox.addClass("d-none").removeClass("result-animate");
+    appointBox.addClass("d-none").removeClass("result-animate");
+    routineBox.addClass("d-none").removeClass("result-animate");
+    infoBox.addClass("d-none").removeClass("result-animate");
   }
 
-  function showRoutine() {
-    $resultInfo.addClass("d-none");
-    $resultUrgent.addClass("d-none");
-    $resultRoutine.removeClass("d-none");
-
-    localStorage.setItem("assessmentOutcome", "routine");
+  function show(box) {
+    resetPanels();
+    box.removeClass("d-none");
+    void box[0].offsetWidth;
+    box.addClass("result-animate");
   }
 
-  function resetErrors() {
-    $mainSymptom.removeClass("is-invalid");
-    $duration.removeClass("is-invalid");
-  }
-
-  $form.on("submit", function (e) {
+  form.on("submit", function (e) {
     e.preventDefault();
 
-    resetErrors();
-
-    const mainSymptomVal = $mainSymptom.val();
-    const durationVal = $duration.val();
-
     let valid = true;
+    if (!mainSymptom.val()) { mainSymptom.addClass("is-invalid"); valid = false; }
+    else mainSymptom.removeClass("is-invalid");
 
-    if (!mainSymptomVal) {
-      $mainSymptom.addClass("is-invalid");
-      valid = false;
-    }
-    if (!durationVal) {
-      $duration.addClass("is-invalid");
-      valid = false;
-    }
+    if (!duration.val()) { duration.addClass("is-invalid"); valid = false; }
+    else duration.removeClass("is-invalid");
 
-    if (!valid) {
-      return;
-    }
+    if (!valid) return;
 
-    // Check for any red-flag checkbox ticked
-    let hasRedFlag = false;
-    $(".red-flag").each(function () {
-      if ($(this).is(":checked")) {
-        hasRedFlag = true;
-      }
+    // Read symptom groups
+    let hasSevere = false;
+    $(".symptom-severe").each(function () {
+      if ($(this).is(":checked")) hasSevere = true;
     });
 
-    // If any red-flag is present → urgent
-    if (hasRedFlag) {
-      showUrgent();
+    let hasMild = false;
+    $(".symptom-mild").each(function () {
+      if ($(this).is(":checked")) hasMild = true;
+    });
+
+    let hasHome = false;
+    $(".symptom-home").each(function () {
+      if ($(this).is(":checked")) hasHome = true;
+    });
+
+    const sym = mainSymptom.val();
+    const wors = worsening.val();
+
+    // URGENT CASES
+    if (hasSevere || sym === "breathing" || sym === "chest" || (wors === "yes" && duration.val() !== "hours")) {
+      show(urgentBox);
       return;
     }
 
-    // Simple extra rule: some main symptoms with very short duration may also be more urgent
-    // This is just a basic condition for your prototype.
-    if ((mainSymptomVal === "chest" || mainSymptomVal === "breathing") && durationVal === "hours") {
-      showUrgent();
+    // NORMAL GP APPOINTMENT
+    if (hasMild || sym === "injury" || duration.val() === "week" || duration.val() === "long") {
+      show(appointBox);
       return;
     }
 
-    // Otherwise treat as suitable for routine care
-    showRoutine();
+    // SELF-CARE
+    if (hasHome || (sym === "mild" && duration.val() === "hours")) {
+      show(routineBox);
+      return;
+    }
+
+    // DEFAULT → appointment
+    show(appointBox);
   });
 
 });
