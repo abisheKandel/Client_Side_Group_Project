@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-    // LOGIN CHECK
     const loggedIn = localStorage.getItem("isLoggedIn") === "true";
 
     if (!loggedIn) {
@@ -12,7 +11,6 @@ $(document).ready(function () {
         $("#appointmentContent").removeClass("d-none");
     }
 
-    // FIXED: GUARANTEED WORKING LOGOUT
     $(document).on("click", "#logoutBtn", function () {
         localStorage.removeItem("isLoggedIn");
         window.location.href = "login.html";
