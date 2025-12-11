@@ -1,5 +1,3 @@
-// Final assessment logic with 3 outcomes + animation
-
 $(document).ready(function () {
 
   const form = $("#assessmentForm");
