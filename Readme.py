@@ -21,16 +21,13 @@ The system includes:
 - Informational pages describing available services.  
 - Supporting pages such as About and Contact for overall site structure.
 
-The project is completely front-end based and does not use any server-side technologies.
-
----
 
 ## Technologies Used
 
 - HTML5  
-- CSS3  
-- JavaScript (ES6)  
-- LocalStorage  
+- CSS
+- JavaScript  
+- Jquery 
 - Bootstrap 5.3 (via CDN)
 
 ---
@@ -52,6 +49,7 @@ The project was created to:
 - Suraj  
 - Angel  
 - Abishek
+
 
 
 
